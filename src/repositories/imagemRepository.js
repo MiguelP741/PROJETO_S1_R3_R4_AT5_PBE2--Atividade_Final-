@@ -1,4 +1,4 @@
-import { connection } from "../config/Database.js";
+import { connection } from "../configs/Database.js";
 
 const imagemRepository = {
   listar: async (id) => {
