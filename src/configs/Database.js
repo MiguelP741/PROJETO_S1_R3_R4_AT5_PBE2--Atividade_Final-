@@ -53,11 +53,12 @@ export async function initializeDatabase() {
 
         const dbName = process.env.DB_DATABASE || 'S1_R6_AT1_PBE2Final';
 
+        await tempConnection.query(`DROP DATABASE IF EXISTS \`${dbName}\`;`);
         await tempConnection.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\`;`);
         await tempConnection.query(`USE \`${dbName}\`;`);
 
         await tempConnection.query(`
-                CREATE TABLE IF NOT EXISTS Categorias (
+                CREATE TABLE IF NOT EXISTS categorias (
                     IdCategoria INT AUTO_INCREMENT PRIMARY KEY,
                     NomeCategoria VARCHAR(100) NOT NULL,
                     Descricao VARCHAR(255),
@@ -67,7 +68,7 @@ export async function initializeDatabase() {
 
 
         await tempConnection.query(`
-                CREATE TABLE IF NOT EXISTS Produtos (
+                CREATE TABLE IF NOT EXISTS produtos (
                     IdProduto INT AUTO_INCREMENT PRIMARY KEY,
                     IdCategoria INT NOT NULL,
                     NomeProduto VARCHAR(150) NOT NULL,
@@ -85,7 +86,7 @@ export async function initializeDatabase() {
 
 
         await tempConnection.query(`
-                CREATE TABLE IF NOT EXISTS Pedidos (
+                CREATE TABLE IF NOT EXISTS pedidos (
                     IdPedido INT AUTO_INCREMENT PRIMARY KEY,
                     ValorTotal DECIMAL(10,2) NOT NULL,
                     StatusPedido ENUM('Aberto','Finalizado','Pendente'),
@@ -95,7 +96,7 @@ export async function initializeDatabase() {
 
 
         await tempConnection.query(`
-                CREATE TABLE IF NOT EXISTS ItensPedido (
+                CREATE TABLE IF NOT EXISTS itensPedido (
                     IdItemPedido INT AUTO_INCREMENT PRIMARY KEY,
                     IdPedido INT NOT NULL,
                     IdProduto INT NOT NULL,
