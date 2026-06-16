@@ -67,7 +67,7 @@ export async function initializeDatabase() {
 
 
         await tempConnection.query(`
-                CREATE TABLE IF NOT EXISTS produtos (
+                CREATE TABLE IF NOT EXISTS Produtos (
                     IdProduto INT AUTO_INCREMENT PRIMARY KEY,
                     IdCategoria INT NOT NULL,
                     NomeProduto VARCHAR(150) NOT NULL,
@@ -77,7 +77,7 @@ export async function initializeDatabase() {
                     Estoque INT NOT NULL DEFAULT 0,
                     DataCad TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-                    CONSTRAINT FK_produtos_categorias
+                    CONSTRAINT FK_Produtos_categorias
                         FOREIGN KEY (IdCategoria)
                         REFERENCES categorias(IdCategoria)
                 );
@@ -85,7 +85,7 @@ export async function initializeDatabase() {
 
 
         await tempConnection.query(`
-                CREATE TABLE IF NOT EXISTS pedidos (
+                CREATE TABLE IF NOT EXISTS Pedidos (
                     IdPedido INT AUTO_INCREMENT PRIMARY KEY,
                     ValorTotal DECIMAL(10,2) NOT NULL,
                     StatusPedido ENUM('Aberto','Finalizado','Pendente'),
@@ -105,11 +105,11 @@ export async function initializeDatabase() {
 
                     CONSTRAINT FK_itensPedido_Pedidos
                         FOREIGN KEY (IdPedido)
-                        REFERENCES pedidos(IdPedido),
+                        REFERENCES Pedidos(IdPedido),
 
-                    CONSTRAINT FK_itensPedido_produtos
+                    CONSTRAINT FK_itensPedido_Produtos
                         FOREIGN KEY (IdProduto)
-                        REFERENCES produtos(IdProduto)
+                        REFERENCES Produtos(IdProduto)
                 );
             `);
 
