@@ -53,7 +53,6 @@ export async function initializeDatabase() {
 
         const dbName = process.env.DB_DATABASE || 'S1_R6_AT1_PBE2Final';
 
-        await tempConnection.query(`DROP DATABASE IF EXISTS \`${dbName}\`;`);
         await tempConnection.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\`;`);
         await tempConnection.query(`USE \`${dbName}\`;`);
 
