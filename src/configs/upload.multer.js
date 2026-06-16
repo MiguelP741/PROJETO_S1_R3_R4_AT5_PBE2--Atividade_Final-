@@ -3,7 +3,7 @@ import path from 'path';
 import crypto from 'crypto';
 import fs from 'fs';
 
-const baseUploadDir = path.resolve(process.cwd(), 'src', 'uploads');
+const baseUploadDir = path.resolve(process.cwd(), 'uploads');
 
 const verificaDir = (dir) => {
     if (!fs.existsSync(dir)) {
