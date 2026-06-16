@@ -53,7 +53,6 @@ export async function initializeDatabase() {
 
         const dbName = process.env.DB_DATABASE || 'S1_R6_AT1_PBE2Final';
 
-        await tempConnection.query(`DROP DATABASE IF EXISTS \`${dbName}\`;`);
         await tempConnection.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\`;`);
         await tempConnection.query(`USE \`${dbName}\`;`);
 
@@ -78,9 +77,9 @@ export async function initializeDatabase() {
                     Estoque INT NOT NULL DEFAULT 0,
                     DataCad TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-                    CONSTRAINT FK_Produtos_Categorias
+                    CONSTRAINT FK_produtos_categorias
                         FOREIGN KEY (IdCategoria)
-                        REFERENCES Categorias(IdCategoria)
+                        REFERENCES categorias(IdCategoria)
                 );
             `);
 
@@ -104,13 +103,13 @@ export async function initializeDatabase() {
                     PrecoUnitario DECIMAL(10,2) NOT NULL,
                     DataCad TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-                    CONSTRAINT FK_ItensPedido_Pedidos
+                    CONSTRAINT FK_itensPedido_Pedidos
                         FOREIGN KEY (IdPedido)
-                        REFERENCES Pedidos(IdPedido),
+                        REFERENCES pedidos(IdPedido),
 
-                    CONSTRAINT FK_ItensPedido_Produtos
+                    CONSTRAINT FK_itensPedido_produtos
                         FOREIGN KEY (IdProduto)
-                        REFERENCES Produtos(IdProduto)
+                        REFERENCES produtos(IdProduto)
                 );
             `);
 
