@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import imagensRepository from "../repositories/imagensRepository.js";
+import imagemRepository from '../repositories/imagemRepository.js';
 
 const imagemController = {
     listar: async (req, res) => {
@@ -11,7 +11,7 @@ const imagemController = {
                 return res.sendFile(imagemArquivo);
             }
 
-            const result = await imagensRepository.listar(param);
+            const result = await imagemRepository.listar(param);
 
             if (!result || result.length === 0 || !result[0].image) {
                 return res.status(404).json({ message: 'A imagem não foi encontrada!' });
